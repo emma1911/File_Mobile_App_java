@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Conteneur pour la liste des vidéos -->
+    <LinearLayout
+        android:id="@+id/videoListLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Bouton pour importer une vidéo -->
+        <Button
+            android:id="@+id/btnImport"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Importer une vidéo" />
+
+        <!-- Liste des vidéos -->
+        <ListView
+            android:id="@+id/videoListView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:dividerHeight="1dp" />
+    </LinearLayout>
+
+    <!-- Lecteur vidéo en plein écran -->
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:keepScreenOn="true" />
+
+    <!-- Bouton pour quitter le mode plein écran -->
+    <Button
+        android:id="@+id/btnExitFullscreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:text="X"
+
+        android:textColor="@android:color/white"
+        android:padding="2dp" />
+</FrameLayout>

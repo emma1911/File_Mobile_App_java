@@ -108,6 +108,7 @@ public class FileDetailsActivity extends AppCompatActivity {
             setResult(RESULT_OK, resultIntent);
             file = newFile;
             Toast.makeText(this, "File renamed to " + newFileName, Toast.LENGTH_SHORT).show();
+//          finish();
         } else {
             Toast.makeText(this, "Error renaming file", Toast.LENGTH_SHORT).show();
         }

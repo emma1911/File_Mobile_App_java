@@ -2,6 +2,8 @@ package com.example.file_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -37,20 +39,28 @@ public class DocumentActivity extends AppCompatActivity {
         listViewFiles.setAdapter(adapter);
 
         // Navigate to CreateFileActivity to create a new file
-        buttonCreateNewFile.setOnClickListener(v -> {
-            Intent intent = new Intent(DocumentActivity.this, CreateFileActivity.class);
-            startActivityForResult(intent, REQUEST_CODE_CREATE_FILE);
+        buttonCreateNewFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DocumentActivity.this, CreateFileActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_CREATE_FILE);
+            }
         });
+
 
         // Navigate to FileDetailsActivity when a file is clicked
-        listViewFiles.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedFile = fileNames.get(position);
+        listViewFiles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedFile = fileNames.get(position);
 
-            // Navigate to FileDetailsActivity
-            Intent intent = new Intent(DocumentActivity.this, FileDetailsActivity.class);
-            intent.putExtra("fileName", selectedFile);
-            startActivityForResult(intent, REQUEST_CODE_FILE_DETAILS);
+                // Navigate to FileDetailsActivity
+                Intent intent = new Intent(DocumentActivity.this, FileDetailsActivity.class);
+                intent.putExtra("fileName", selectedFile);
+                startActivityForResult(intent, REQUEST_CODE_FILE_DETAILS);
+            }
         });
+
     }
 
     private void loadFileList() {

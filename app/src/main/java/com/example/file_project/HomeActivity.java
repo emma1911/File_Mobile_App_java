@@ -21,15 +21,13 @@ public class HomeActivity extends AppCompatActivity {
 
         listViewCategories = findViewById(R.id.listViewCategories);
 
-        // Define categories and corresponding icons (without Archives)
         String[] categories = {"Documents", "Images", "Videos"};
         int[] icons = {
-                R.drawable.ic_documents,  // Replace with actual drawable names
+                R.drawable.ic_documents,
                 R.drawable.ic_images,
                 R.drawable.ic_videos
         };
 
-        // Prepare data for SimpleAdapter
         ArrayList<HashMap<String, Object>> data = new ArrayList<>();
         for (int i = 0; i < categories.length; i++) {
             HashMap<String, Object> item = new HashMap<>();
@@ -38,20 +36,26 @@ public class HomeActivity extends AppCompatActivity {
             data.add(item);
         }
 
-        // SimpleAdapter to bind data to the ListView
         String[] from = {"icon", "text"};
         int[] to = {R.id.imageViewIcon, R.id.textViewCategory};
 
         SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.list_item_with_icon, from, to);
         listViewCategories.setAdapter(adapter);
 
-        // Handle item clicks
         listViewCategories.setOnItemClickListener((parent, view, position, id) -> {
             String selectedCategory = categories[position];
 
             if (selectedCategory.equals("Documents")) {
                 Intent intent = new Intent(HomeActivity.this, DocumentActivity.class);
                 startActivity(intent);
+            } else if (selectedCategory.equals("Images")) {
+                Intent intent = new Intent(HomeActivity.this, ImageActivity.class);
+                startActivity(intent);
+
+            } else if (selectedCategory.equals("Videos")) {
+                Intent intent = new Intent(HomeActivity.this, VedioActivity.class);
+                startActivity(intent);
+
             } else {
                 Toast.makeText(HomeActivity.this, selectedCategory + " section is not implemented yet.", Toast.LENGTH_SHORT).show();
             }

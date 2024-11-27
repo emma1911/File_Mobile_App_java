@@ -2,6 +2,7 @@ package com.example.file_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,7 +26,13 @@ public class CreateFileActivity extends AppCompatActivity {
         editTextContent = findViewById(R.id.editTextContent);
         buttonSaveFile = findViewById(R.id.buttonSaveFile);
 
-        buttonSaveFile.setOnClickListener(v -> saveFile());
+        buttonSaveFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveFile();
+            }
+        });
+
     }
 
     private void saveFile() {
