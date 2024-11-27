@@ -39,6 +39,9 @@ public class FileDetailsActivity extends AppCompatActivity {
 
         if (file.exists()) {
             loadFileContent();
+
+            // Set the file name as the hint in the Rename EditText
+            editTextRenameFile.setHint(fileName);  // Set file name as hint
         } else {
             Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show();
             finish();
