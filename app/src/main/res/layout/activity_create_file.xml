@@ -8,13 +8,13 @@
         android:id="@+id/editTextFileName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="File name (e.g., my_file.txt)" />
+        android:hint="Nom du fichier" />
 
     <EditText
         android:id="@+id/editTextContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter content"
+        android:hint="Ecrire quelque chose"
         android:inputType="textMultiLine"
         android:gravity="top"
         android:minHeight="100dp" />
@@ -23,6 +23,6 @@
         android:id="@+id/buttonSaveFile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save File"
+        android:text="Enregistrer le fichier"
         android:layout_marginTop="16dp" />
 </LinearLayout>

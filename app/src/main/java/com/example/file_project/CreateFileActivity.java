@@ -40,7 +40,7 @@ public class CreateFileActivity extends AppCompatActivity {
         String content = editTextContent.getText().toString();
 
         if (fileName.isEmpty()) {
-            Toast.makeText(this, "Please enter a file name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Veuillez entrer un nom de fichier", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -51,7 +51,7 @@ public class CreateFileActivity extends AppCompatActivity {
         File file = new File(getFilesDir(), fileName);
 
         if (file.exists()) {
-            Toast.makeText(this, "File already exists", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Le fichier existe déjà", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -62,10 +62,10 @@ public class CreateFileActivity extends AppCompatActivity {
             Intent resultIntent = new Intent();
             resultIntent.putExtra("newFileName", fileName);
             setResult(RESULT_OK, resultIntent);
-            Toast.makeText(this, "File created successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fichier créé avec succès", Toast.LENGTH_SHORT).show();
             finish();
         } catch (IOException e) {
-            Toast.makeText(this, "Error creating file", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Erreur lors de la création du fichier", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }

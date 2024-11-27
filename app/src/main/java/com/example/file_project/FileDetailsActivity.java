@@ -43,29 +43,44 @@ public class FileDetailsActivity extends AppCompatActivity {
             // Set the file name as the hint in the Rename EditText
             editTextRenameFile.setHint(fileName);  // Set file name as hint
         } else {
-            Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fichier non trouvé", Toast.LENGTH_SHORT).show();
             finish();
         }
 
         // Save changes to the file
-        buttonSaveChanges.setOnClickListener(v -> saveFileContent());
-
-        // Delete the file
-        buttonDeleteFile.setOnClickListener(v -> {
-            if (file.delete()) {
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("fileDeleted", true);
-                resultIntent.putExtra("fileName", file.getName());
-                setResult(RESULT_OK, resultIntent);
-                Toast.makeText(this, "File deleted", Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                Toast.makeText(this, "Error deleting file", Toast.LENGTH_SHORT).show();
+        buttonSaveChanges.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveFileContent();
             }
         });
 
+
+        // Delete the file
+        buttonDeleteFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (file.delete()) {
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("fileDeleted", true);
+                    resultIntent.putExtra("fileName", file.getName());
+                    setResult(RESULT_OK, resultIntent);
+                    Toast.makeText(v.getContext(), "Fichier supprimé", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(v.getContext(), "Erreur lors de la suppression du fichier", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
         // Rename the file
-        buttonRenameFile.setOnClickListener(v -> renameFile());
+        buttonRenameFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                renameFile();
+            }
+        });
     }
 
     private void loadFileContent() {
@@ -77,7 +92,7 @@ public class FileDetailsActivity extends AppCompatActivity {
             }
             editTextFileContent.setText(contentBuilder.toString().trim());
         } catch (IOException e) {
-            Toast.makeText(this, "Error reading file", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Erreur de lecture du fichier", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
@@ -85,9 +100,9 @@ public class FileDetailsActivity extends AppCompatActivity {
     private void saveFileContent() {
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(editTextFileContent.getText().toString());
-            Toast.makeText(this, "Changes saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Modifications enregistrées", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
-            Toast.makeText(this, "Error saving file", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Erreur lors de l'enregistrement du fichier", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
@@ -95,8 +110,11 @@ public class FileDetailsActivity extends AppCompatActivity {
     private void renameFile() {
         String newFileName = editTextRenameFile.getText().toString().trim();
         if (newFileName.isEmpty()) {
-            Toast.makeText(this, "Please enter a new file name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Veuillez d'abord renommer votre fichier", Toast.LENGTH_SHORT).show();
             return;
+        }
+        if (!newFileName.endsWith(".txt")) {
+            newFileName += ".txt";
         }
 
         File newFile = new File(file.getParent(), newFileName);
@@ -107,10 +125,10 @@ public class FileDetailsActivity extends AppCompatActivity {
             resultIntent.putExtra("newFileName", newFileName);
             setResult(RESULT_OK, resultIntent);
             file = newFile;
-            Toast.makeText(this, "File renamed to " + newFileName, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fichier renommé à " + newFileName, Toast.LENGTH_SHORT).show();
 //          finish();
         } else {
-            Toast.makeText(this, "Error renaming file", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Erreur lors du renommage du fichier", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:hint="File Content"
+        android:hint="Contenu du fichier"
         android:gravity="top"
         android:inputType="textMultiLine"
         android:scrollbars="vertical" />
@@ -28,19 +28,19 @@
         android:id="@+id/buttonSaveChanges"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Changes" />
+        android:text="Enregistrer les modifications" />
 
     <Button
         android:id="@+id/buttonDeleteFile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delete File" />
+        android:text="Suprimer le fichier" />
 
     <Button
         android:id="@+id/buttonRenameFile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rename File" />
+        android:text="Renommer le fichier" />
 
 
 

@@ -9,7 +9,7 @@
         android:id="@+id/buttonCreateNewFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create New File" />
+        android:text="Créer un Nouveau Fichier" />
 
     <ListView
         android:id="@+id/listViewFiles"

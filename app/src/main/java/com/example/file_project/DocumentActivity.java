@@ -84,7 +84,7 @@ public class DocumentActivity extends AppCompatActivity {
             if (newFileName != null) {
                 fileNames.add(newFileName);
                 adapter.notifyDataSetChanged(); // Refresh the ListView
-                Toast.makeText(this, "New file added: " + newFileName, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Nouveau fichier ajouté : " + newFileName, Toast.LENGTH_SHORT).show();
             }
         } else if (requestCode == REQUEST_CODE_FILE_DETAILS && resultCode == RESULT_OK && data != null) {
             boolean fileDeleted = data.getBooleanExtra("fileDeleted", false);
@@ -95,7 +95,7 @@ public class DocumentActivity extends AppCompatActivity {
                 if (fileName != null) {
                     fileNames.remove(fileName);
                     adapter.notifyDataSetChanged();
-                    Toast.makeText(this, "File removed from the list", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Fichier supprimé de la liste", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -109,7 +109,7 @@ public class DocumentActivity extends AppCompatActivity {
                         fileNames.set(index, newFileName);
                         adapter.notifyDataSetChanged();
                     }
-                    Toast.makeText(this, "File renamed successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Fichier renommé avec succès", Toast.LENGTH_SHORT).show();
                 }
             }
         }
