@@ -65,7 +65,6 @@ public class DocumentActivity extends AppCompatActivity {
     }
 
     // Handle results from other activities
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -80,7 +79,6 @@ public class DocumentActivity extends AppCompatActivity {
         } else if (requestCode == REQUEST_CODE_FILE_DETAILS && resultCode == RESULT_OK && data != null) {
             boolean fileDeleted = data.getBooleanExtra("fileDeleted", false);
             boolean fileRenamed = data.getBooleanExtra("fileRenamed", false);
-            boolean fileCompressed = data.getBooleanExtra("fileCompressed", false);
 
             if (fileDeleted) {
                 String fileName = data.getStringExtra("fileName");
@@ -104,17 +102,6 @@ public class DocumentActivity extends AppCompatActivity {
                     Toast.makeText(this, "File renamed successfully", Toast.LENGTH_SHORT).show();
                 }
             }
-
-            if (fileCompressed) {
-                String compressedFileName = data.getStringExtra("compressedFileName");
-                if (compressedFileName != null) {
-                    fileNames.add(compressedFileName);
-                    adapter.notifyDataSetChanged();  // Refresh the list
-                    Toast.makeText(this, "Compressed file added: " + compressedFileName, Toast.LENGTH_SHORT).show();
-                }
-            }
         }
     }
 }
-
-

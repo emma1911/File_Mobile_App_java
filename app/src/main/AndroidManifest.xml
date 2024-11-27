@@ -22,9 +22,6 @@
             android:name=".CreateFileActivity"
             android:exported="false" />
         <activity
-            android:name=".ArchivesActivity"
-            android:exported="false" />
-        <activity
             android:name=".DocumentActivity"
             android:exported="false" />
         <activity

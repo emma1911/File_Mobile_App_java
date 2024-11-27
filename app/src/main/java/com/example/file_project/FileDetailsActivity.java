@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
@@ -14,9 +13,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 public class FileDetailsActivity extends AppCompatActivity {
 
@@ -25,7 +21,6 @@ public class FileDetailsActivity extends AppCompatActivity {
     private Button buttonSaveChanges;
     private Button buttonDeleteFile;
     private Button buttonRenameFile;
-    private Button buttonCompressFile;  // Button to compress the file
     private File file;
 
     @Override
@@ -38,7 +33,6 @@ public class FileDetailsActivity extends AppCompatActivity {
         buttonSaveChanges = findViewById(R.id.buttonSaveChanges);
         buttonDeleteFile = findViewById(R.id.buttonDeleteFile);
         buttonRenameFile = findViewById(R.id.buttonRenameFile);
-        buttonCompressFile = findViewById(R.id.buttonCompressFile);  // Initialize the Compress button
 
         String fileName = getIntent().getStringExtra("fileName");
         file = new File(getFilesDir(), fileName);
@@ -69,9 +63,6 @@ public class FileDetailsActivity extends AppCompatActivity {
 
         // Rename the file
         buttonRenameFile.setOnClickListener(v -> renameFile());
-
-        // Compress the file
-        buttonCompressFile.setOnClickListener(v -> compressFile());
     }
 
     private void loadFileContent() {
@@ -101,73 +92,21 @@ public class FileDetailsActivity extends AppCompatActivity {
     private void renameFile() {
         String newFileName = editTextRenameFile.getText().toString().trim();
         if (newFileName.isEmpty()) {
-            Toast.makeText(this, "File name cannot be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter a new file name", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        File newFile = new File(getFilesDir(), newFileName);
-        if (newFile.exists()) {
-            Toast.makeText(this, "File with this name already exists", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
+        File newFile = new File(file.getParent(), newFileName);
         if (file.renameTo(newFile)) {
-            Toast.makeText(this, "File renamed successfully", Toast.LENGTH_SHORT).show();
-
-            // Send the new file name back to DocumentActivity
             Intent resultIntent = new Intent();
             resultIntent.putExtra("fileRenamed", true);
             resultIntent.putExtra("oldFileName", file.getName());
             resultIntent.putExtra("newFileName", newFileName);
             setResult(RESULT_OK, resultIntent);
-            finish();
+            file = newFile;
+            Toast.makeText(this, "File renamed to " + newFileName, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Error renaming file", Toast.LENGTH_SHORT).show();
         }
     }
-
-    private void compressFile() {
-        // Create the archive directory if it doesn't exist
-        File archiveDir = new File(getFilesDir(), "Archives");
-        if (!archiveDir.exists()) {
-            archiveDir.mkdirs();
-        }
-
-        // Compress the file
-        try {
-            File zipFile = new File(archiveDir, file.getName() + ".zip");
-
-            // Check if the .zip file already exists to avoid overwriting
-            if (zipFile.exists()) {
-                Toast.makeText(this, "Compressed file already exists in Archives", Toast.LENGTH_SHORT).show();
-            } else {
-                // Create the .zip file in the Archives directory
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    try (ZipOutputStream zipOut = new ZipOutputStream(Files.newOutputStream(zipFile.toPath()))) {
-                        ZipEntry zipEntry = new ZipEntry(file.getName());
-                        zipOut.putNextEntry(zipEntry);
-
-                        // Copy the original file content into the zip file
-                        Files.copy(file.toPath(), zipOut);
-                        zipOut.closeEntry();
-                    }
-                }
-
-                // Notify the user
-                Toast.makeText(this, "File compressed and saved in Archives", Toast.LENGTH_SHORT).show();
-            }
-
-            // Send the result back to DocumentActivity (optional)
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("compressedFileName", zipFile.getName());
-            setResult(RESULT_OK, resultIntent);
-            finish();
-
-        } catch (IOException e) {
-            Toast.makeText(this, "Error compressing file", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-    }
-
-
 }

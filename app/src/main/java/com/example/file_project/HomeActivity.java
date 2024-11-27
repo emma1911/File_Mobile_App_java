@@ -21,13 +21,12 @@ public class HomeActivity extends AppCompatActivity {
 
         listViewCategories = findViewById(R.id.listViewCategories);
 
-        // Define categories and corresponding icons
-        String[] categories = {"Documents", "Images", "Videos", "Archives"};
+        // Define categories and corresponding icons (without Archives)
+        String[] categories = {"Documents", "Images", "Videos"};
         int[] icons = {
                 R.drawable.ic_documents,  // Replace with actual drawable names
                 R.drawable.ic_images,
-                R.drawable.ic_videos,
-                R.drawable.ic_archives
+                R.drawable.ic_videos
         };
 
         // Prepare data for SimpleAdapter
@@ -51,16 +50,9 @@ public class HomeActivity extends AppCompatActivity {
             String selectedCategory = categories[position];
 
             if (selectedCategory.equals("Documents")) {
-                // Navigate to Documents Activity (if it's implemented)
                 Intent intent = new Intent(HomeActivity.this, DocumentActivity.class);
                 startActivity(intent);
-                Toast.makeText(HomeActivity.this, "Documents section is not implemented yet.", Toast.LENGTH_SHORT).show();
-            } else if (selectedCategory.equals("Archives")) {
-                // Navigate to ArchivesActivity
-                Intent intent = new Intent(HomeActivity.this, ArchivesActivity.class);
-                startActivity(intent);
             } else {
-                // Show a toast for unimplemented categories
                 Toast.makeText(HomeActivity.this, selectedCategory + " section is not implemented yet.", Toast.LENGTH_SHORT).show();
             }
         });
