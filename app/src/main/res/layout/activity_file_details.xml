@@ -1,0 +1,53 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextRenameFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Rename file"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextFileContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="File Content"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical" />
+
+
+
+    <Button
+        android:id="@+id/buttonSaveChanges"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Changes" />
+
+    <Button
+        android:id="@+id/buttonDeleteFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete File" />
+
+    <Button
+        android:id="@+id/buttonRenameFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rename File" />
+
+    <Button
+        android:id="@+id/buttonCompressFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Compress File" />
+
+
+
+</LinearLayout>
