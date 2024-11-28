@@ -19,7 +19,7 @@
             android:name=".ImageActivity"
             android:exported="false" />
         <activity
-            android:name=".VedioActivity"
+            android:name=".VideoActivity"
             android:exported="false" />
         <activity
             android:name=".FileDetailsActivity"

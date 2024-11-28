@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -24,7 +23,7 @@ import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 
-public class VedioActivity extends AppCompatActivity {
+public class VideoActivity extends AppCompatActivity {
 
     private static final int PICK_VIDEO_REQUEST = 1;
 

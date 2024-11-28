@@ -2,6 +2,8 @@ package com.example.file_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -42,23 +44,25 @@ public class HomeActivity extends AppCompatActivity {
         SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.list_item_with_icon, from, to);
         listViewCategories.setAdapter(adapter);
 
-        listViewCategories.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedCategory = categories[position];
+        listViewCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedCategory = categories[position];
 
-            if (selectedCategory.equals("Documents")) {
-                Intent intent = new Intent(HomeActivity.this, DocumentActivity.class);
-                startActivity(intent);
-            } else if (selectedCategory.equals("Images")) {
-                Intent intent = new Intent(HomeActivity.this, ImageActivity.class);
-                startActivity(intent);
-
-            } else if (selectedCategory.equals("Videos")) {
-                Intent intent = new Intent(HomeActivity.this, VedioActivity.class);
-                startActivity(intent);
-
-            } else {
-                Toast.makeText(HomeActivity.this, selectedCategory + " section is not implemented yet.", Toast.LENGTH_SHORT).show();
+                if (selectedCategory.equals("Documents")) {
+                    Intent intent = new Intent(HomeActivity.this, DocumentActivity.class);
+                    startActivity(intent);
+                } else if (selectedCategory.equals("Images")) {
+                    Intent intent = new Intent(HomeActivity.this, ImageActivity.class);
+                    startActivity(intent);
+                } else if (selectedCategory.equals("Videos")) {
+                    Intent intent = new Intent(HomeActivity.this, VideoActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(HomeActivity.this, selectedCategory + " section is not implemented yet.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
     }
 }
