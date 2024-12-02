@@ -5,6 +5,29 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Search files"
+            android:padding="8dp"
+            android:inputType="text" />
+
+        <ImageView
+            android:id="@+id/imageViewSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_sort_alphabetically"
+            android:contentDescription="Sort files"
+            android:padding="8dp" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/buttonCreateNewFile"
         android:layout_width="wrap_content"
@@ -14,5 +37,6 @@
     <ListView
         android:id="@+id/listViewFiles"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>

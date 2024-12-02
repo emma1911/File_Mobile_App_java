@@ -59,7 +59,7 @@ public class HomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(HomeActivity.this, VideoActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(HomeActivity.this, selectedCategory + " section is not implemented yet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, selectedCategory + " La section n'est pas encore implémentée.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

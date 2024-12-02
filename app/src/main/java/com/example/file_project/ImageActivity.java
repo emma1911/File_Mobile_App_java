@@ -37,7 +37,6 @@ public class ImageActivity extends AppCompatActivity {
         Button buttonImportImage = findViewById(R.id.buttonImportImage);
         Button buttonDeleteImage = findViewById(R.id.buttonDeleteImage);
 
-        // Adapter pour afficher les noms des images dans la liste
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>());
         listViewImages.setAdapter(adapter);
 
